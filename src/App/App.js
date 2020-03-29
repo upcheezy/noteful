@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import { Route, Link } from 'react-router-dom';
 import STORE from '../dummy-store';
+import NoteListNav from '../NoteListNav/NoteListNav';
 // import { directive } from '@babel/types';
 
 export default class App extends Component {
@@ -10,13 +11,29 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({store: STORE});
-    console.log(this.state);
+    this.setState(STORE);
+  }
+
+  renderNavRoutes() {
+    const { notes, folders } = this.state;
+    return (
+      <>
+        {
+          ['/', '/folder/:folderId'].map(path => 
+                <NoteListNav 
+                  folders={folders}
+                  notes={notes}   
+                />
+            )
+        }
+      </>
+    )
   }
 
   render() {
+    // console.log(this.state);
     return (
-      <div> hello </div>
+      <div> {this.renderNavRoutes()} </div>
     )
   }
 }
