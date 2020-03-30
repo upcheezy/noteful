@@ -1,0 +1,29 @@
+li {
+    border: black solid 1px;
+    list-style-type: none;
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    text-align: center;
+}
+
+.NoteListNav_button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+button {
+    border: black solid 1px;
+    padding: 15px;
+    background-color: transparent;
+}

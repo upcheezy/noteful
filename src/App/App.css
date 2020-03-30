@@ -1,0 +1,29 @@
+nav {
+    /* border: green solid 3px; */
+    height: 100%;
+    width: 15%;
+}
+
+header {
+    /* border: blue solid 3px; */
+    height: 55px;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    width: 84.6%;
+}
+
+.main_cont {
+    display: flex;
+    flex-direction: row;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
