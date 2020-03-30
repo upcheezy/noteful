@@ -22,9 +22,10 @@ export default class App extends Component {
     return (
       <>
         {/* why is the first operation in curly brackets? */}
+          {/* because we are starting with a map method (js) and not JSX */}
         {
           // what is the first item (backslash) in this array for? When it's taken out the data doesn't display.
-          // dynamic path variable 
+            // dynamic path variable 
           ['/','/folder/:folderId'].map(path =>
             <Route
               exact
