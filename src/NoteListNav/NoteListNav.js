@@ -1,6 +1,7 @@
 import React from 'react';
 import './NoteListNav.css';
 import { NavLink, Link } from 'react-router-dom'
+import Button from '../Button/Button';
 
 export default function NoteListNav(props) {
     // console.log(props);
@@ -19,7 +20,14 @@ export default function NoteListNav(props) {
                 )}
             </ul>
             <div className='NoteListNav_button'>
-                <button>Add Folder</button>
+                <Button
+                    tag={Link}
+                    to='/add-folder'
+                    type='button'
+                    className='NoteListNav__add-folder-button'
+                >   
+                    Add Folder
+                </Button>
             </div>
         </div>
     )

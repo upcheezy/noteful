@@ -6,6 +6,7 @@ import { getNotesForFolder, findNote, findFolder } from '../notes_helpers';
 import './App.css';
 import NoteListMain from '../NoteListMain/NoteListMain';
 import NotePageNav from '../NotePageNav/NotePageNav';
+import NotePageMain from '../NotePageMain/NotePageMain';
 
 export default class App extends Component {
   state = {
@@ -46,14 +47,15 @@ export default class App extends Component {
           path="/note/:noteId"
           render={routeProps => {
             // why is noteId in brackets? 
-              // destruction state same as below
+              // destructure state same as below
               // const noteId = routeProps.match.params.noteId;
             // console.log(routeProps);
             const { noteId } = routeProps.match.params;
             // where is notes delcared that this is using and what else is it doing?
+              // above on the first line of method is where
             const note = findNote(notes, noteId) || {};
             const folder = findFolder(folders, note.folderId);
-            return <NotePageNav />
+            return <NotePageNav {...routeProps} folder={folder}/>
           }}
         />
 
@@ -85,6 +87,20 @@ export default class App extends Component {
             />
           )
         }
+
+        <Route
+          path='/note/:noteId'
+          render={routeProps => {
+            const {noteId} = routeProps.match.params
+            const note = findNote(notes, noteId)
+            return (
+              <NotePageMain
+                {...routeProps}
+                note={note}
+              />
+            )
+          }}
+          />
       </>
     )
   }
