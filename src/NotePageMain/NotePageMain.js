@@ -4,6 +4,7 @@ import Note from '../Note/Note';
 export default function NotePageMain(props) {
     return (
         <section className='NotePageMain'>
+            {console.log(props)}
             <Note
                 id={props.note.id}
                 name={props.note.name}
