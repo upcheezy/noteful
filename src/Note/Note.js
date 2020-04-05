@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import NotefulContext from "../NotefulContext";
 
-function deleteNote(noteId) {
+function deleteNote(noteId, cb) {
   fetch(`http://localhost:9090/notes/${noteId}`, {
     method: "DELETE",
     headers: {
@@ -19,6 +19,7 @@ function deleteNote(noteId) {
     })
     .then(data => {
       console.log({ data });
+      cb(noteId)
     })
     .catch(error => {
       console.log(error);
@@ -28,19 +29,25 @@ function deleteNote(noteId) {
 export default function Note(props) {
   return (
     <NotefulContext.Consumer>
-      {value => {
-        // console.log(value);
+      {(value) => {
+        console.log(value);
         return (
           <>
             <div className="Note">
               <h2 className="Note__title">
                 <Link to={`/note/${props.id}`}>{props.name}</Link>
               </h2>
-              {/* <p>{deleteNote(props.id)}</p> */}
               {/* ************************************ */}
               {/* add logic for deletion of note here  */}
               {/* ************************************ */}
-              <button className="Note__delete" type="button">
+              <button className="Note__delete" 
+                      type="button"
+                      onClick={() => {
+                          deleteNote(
+                              props.id,
+                              value.deleteNote
+                          )
+                      }}>
                 Remove Note
               </button>
             </div>

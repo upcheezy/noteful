@@ -15,9 +15,6 @@ export default class App extends Component {
     folders: []
   };
 
-  deleteNotes = noteId => {
-    console.log(noteId)
-  }
 
   componentDidMount() {
     // this.setState(STORE);
@@ -103,8 +100,15 @@ export default class App extends Component {
     );
   }
 
-  deleteNote(noteId) {
-    // implement delete note button action here
+  deleteNote = noteId => {
+    console.log(noteId)
+    // todo: remove bookmark with bookmarkId from state
+    const newNotes = this.state.notes.filter(bm =>
+      bm.id !== noteId
+    )
+    this.setState({
+      bookmarks: newNotes
+    })
   }
 
   renderMainRoutes() {
@@ -124,7 +128,7 @@ export default class App extends Component {
           />
         ))}
 
-        
+
         <Route
           path="/note/:noteId"
           render={routeProps => {
@@ -138,7 +142,11 @@ export default class App extends Component {
   }
 
   render() {
-    const value = { notes: this.state.notes, folders: this.state.folders };
+    const value = { 
+                    notes: this.state.notes, 
+                    folders: this.state.folders,
+                    deleteNote: this.deleteNote
+                  };
     // console.log(value);
     return (
       <NotefulContext.Provider value={value}>
