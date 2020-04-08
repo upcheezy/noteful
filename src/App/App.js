@@ -101,13 +101,13 @@ export default class App extends Component {
   }
 
   deleteNote = noteId => {
-    console.log(noteId)
+    // console.log(noteId)
     // todo: remove bookmark with bookmarkId from state
     const newNotes = this.state.notes.filter(bm =>
       bm.id !== noteId
     )
     this.setState({
-      bookmarks: newNotes
+      notes: newNotes
     })
   }
 
