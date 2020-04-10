@@ -54,7 +54,7 @@ class AddFolder extends Component {
     } else if (name.length < 3) {
       return "Name must be at least 3 characters long";
     }
-    console.log(name)
+    // console.log(name)
   }
 
   render() {
@@ -77,7 +77,7 @@ class AddFolder extends Component {
         <button
           type="submit"
           className="newFolder-button"
-          disabled={this.updateName}
+          disabled={this.state.touched === false}
         >
           Save
         </button>

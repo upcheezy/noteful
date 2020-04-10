@@ -4,9 +4,15 @@ class AddNote extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nname: "",
-      content: "",
-      folderId: "",
+        nname: {
+            value: '',
+            touched: false,
+        },
+        content: {
+            value: '',
+            touched: false,
+        },
+        folderId: "",
     };
   }
 
@@ -18,8 +24,8 @@ class AddNote extends Component {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name: this.state.nname,
-        content: this.state.content,
+        name: this.state.nname.value,
+        content: this.state.content.value,
         folderId: this.state.folderId,
       }),
     };
@@ -44,15 +50,15 @@ class AddNote extends Component {
             error: err.message
         });
       });
-    this.setState({ fname: "" });
+    this.setState({ nname: {value: ""} });
   };
 
   updateName(name) {
-    this.setState({ nname: name });
+    this.setState({ nname: {value: name, touched: true} });
   }
 
   updateContent(content) {
-    this.setState({ content: content });
+    this.setState({ content: {value: content, touched: true} });
   }
 
   updateFolderId(fid) {
@@ -69,14 +75,14 @@ class AddNote extends Component {
         <input
           type="text"
           name="Name"
-          value={this.state.fname}
+          value={this.state.nname.value}
           onChange={(e) => this.updateName(e.target.value)}
         />
         <label htmlFor="note-content">Note Content</label>
         <input
           type="text"
           name="Content"
-          value={this.state.content}
+          value={this.state.content.value}
           onChange={(e) => this.updateContent(e.target.value)}
         />
         <select

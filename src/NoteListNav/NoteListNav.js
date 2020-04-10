@@ -3,7 +3,6 @@ import "./NoteListNav.css";
 import { NavLink, Link } from "react-router-dom";
 import Button from "../Button/Button";
 import NotefulContext from "../NotefulContext";
-import AddFolder from "../AddFolder/AddFolder";
 
 export default function NoteListNav(props) {
   // console.log(props);
