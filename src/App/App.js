@@ -18,7 +18,7 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    // this.setState(STORE);
+    console.log(this.state);
     const notesUrl = "http://localhost:9090/notes";
     fetch(notesUrl)
       .then((res) => res.json())
@@ -31,11 +31,6 @@ export default class App extends Component {
           this.setState({
             notes: data,
           });
-          // const keyz = Object.keys(data).map(key => data[key].name);
-          // console.log(keyz);
-          // this.setState({
-          //   keyz
-          // })
         }
       })
       .catch((err) => {
