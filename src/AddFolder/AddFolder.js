@@ -48,7 +48,7 @@ class AddFolder extends Component {
   }
 
   validateName() {
-    const name = this.state.fname.value.trim();
+    const name = this.state.fname.trim();
     if (name.length === 0) {
       return "Name is required";
     } else if (name.length < 3) {
