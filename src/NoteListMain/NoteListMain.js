@@ -2,8 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../Button/Button'
 import Note from '../Note/Note';
+import PropTypes from 'prop-types';
 
 export default function NoteListMain(props) {
+    // console.log(props);
     return (
         <section className='NoteListMain'>
             <ul>
@@ -34,4 +36,11 @@ export default function NoteListMain(props) {
 
 NoteListMain.defaultProps = {
     notes: [],
+}
+
+NoteListMain.propTypes = {
+    history: PropTypes.object,
+    location: PropTypes.object,
+    match: PropTypes.object,
+    notes: PropTypes.array
 }

@@ -1,19 +1,31 @@
 import React, { Component } from "react";
+import ValidationError from "../ValidationError/ValidationError";
+import PropTypes from 'prop-types';
 
 class AddNote extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        nname: {
-            value: '',
-            touched: false,
-        },
-        content: {
-            value: '',
-            touched: false,
-        },
-        folderId: "",
+      nname: {
+        value: "",
+        touched: false,
+      },
+      content: {
+        value: "",
+        touched: false,
+      },
+      folderId: "",
     };
+  }
+
+  validateName() {
+    const name = this.state.nname.value.trim();
+    if (name.length === 0) {
+      return "Name is required";
+    } else if (name.length < 3) {
+      return "Name must be at least 3 characters long";
+    }
+    // console.log(name)
   }
 
   handleSubmit = (event) => {
@@ -47,18 +59,18 @@ class AddNote extends Component {
       })
       .catch((err) => {
         this.setState({
-            error: err.message
+          error: err.message,
         });
       });
-    this.setState({ nname: {value: ""} });
+    this.setState({ nname: { value: "" } });
   };
 
   updateName(name) {
-    this.setState({ nname: {value: name, touched: true} });
+    this.setState({ nname: { value: name, touched: true } });
   }
 
   updateContent(content) {
-    this.setState({ content: {value: content, touched: true} });
+    this.setState({ content: { value: content, touched: true } });
   }
 
   updateFolderId(fid) {
@@ -67,7 +79,12 @@ class AddNote extends Component {
     // console.log(currentId.id);
   }
 
+  handleClickCancel = () => {
+    this.props.history.push("/");
+  };
+
   render() {
+    //   console.log(this.props);
     return (
       <form className="AddNoteForm" onSubmit={this.handleSubmit}>
         <h2>Add Note</h2>
@@ -78,6 +95,9 @@ class AddNote extends Component {
           value={this.state.nname.value}
           onChange={(e) => this.updateName(e.target.value)}
         />
+        {this.state.nname.touched && (
+          <ValidationError message={this.validateName()} />
+        )}
         <label htmlFor="note-content">Note Content</label>
         <input
           type="text"
@@ -97,15 +117,31 @@ class AddNote extends Component {
             return <option value={folder.name}>{folder.name}</option>;
           })}
         </select>
-        <button type="reset" className="newFolder-button">
+        <button
+          type="reset"
+          className="newFolder-button"
+          onClick={this.handleClickCancel}
+        >
           Cancel
         </button>
-        <button type="submit" className="newFolder-button">
+        <button
+          type="submit"
+          className="newFolder-button"
+          disabled={this.state.nname.touched === false}
+        >
           Save
         </button>
       </form>
     );
   }
+}
+
+AddNote.propTypes = {
+    folders: PropTypes.array,
+    addNote: PropTypes.func,
+    history: PropTypes.object,
+    location: PropTypes.object,
+    match: PropTypes.object
 }
 
 export default AddNote;

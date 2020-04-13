@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import ValidationError from '../ValidationError/ValidationError'
+import ValidationError from "../ValidationError/ValidationError";
+import PropTypes from 'prop-types';
 
 class AddFolder extends Component {
   constructor(props) {
@@ -57,7 +58,12 @@ class AddFolder extends Component {
     // console.log(name)
   }
 
+  handleClickCancel = () => {
+    this.props.history.push("/");
+  };
+
   render() {
+    //   console.log(this.props);
     return (
       <form className="AddFolderForm" onSubmit={this.handleSubmit}>
         <h2>Add Folder</h2>
@@ -69,9 +75,13 @@ class AddFolder extends Component {
           onChange={(e) => this.updateName(e.target.value)}
         />
         {this.state.touched && (
-            <ValidationError message={this.validateName()} />
-          )}
-        <button type="reset" className="newFolder-button">
+          <ValidationError message={this.validateName()} />
+        )}
+        <button
+          type="reset"
+          className="newFolder-button"
+          onClick={this.handleClickCancel}
+        >
           Cancel
         </button>
         <button
@@ -84,6 +94,13 @@ class AddFolder extends Component {
       </form>
     );
   }
+}
+
+AddFolder.propTypes = {
+    addFolder: PropTypes.func,
+    history: PropTypes.object,
+    location: PropTypes.object,
+    match: PropTypes.object
 }
 
 export default AddFolder;

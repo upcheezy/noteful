@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NotefulContext from "../NotefulContext";
+import PropTypes from 'prop-types';
 
 function deleteNote(noteId, cb) {
   fetch(`http://localhost:9090/notes/${noteId}`, {
@@ -27,6 +28,7 @@ function deleteNote(noteId, cb) {
 }
 
 export default function Note(props) {
+  // console.log(props);
   return (
     <NotefulContext.Consumer>
       {(value) => {
@@ -54,4 +56,11 @@ export default function Note(props) {
       }}
     </NotefulContext.Consumer>
   );
+}
+
+Note.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+  modified: PropTypes.string,
+  history: PropTypes.object
 }

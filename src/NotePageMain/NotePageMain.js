@@ -1,10 +1,12 @@
 import React from 'react';
 import Note from '../Note/Note';
+import PropTypes from 'prop-types';
 
 export default function NotePageMain(props) {
+    // console.log(props);
     return (
         <section className='NotePageMain'>
-            {console.log(props)}
+            {/* {console.log(props)} */}
             <Note
                 id={props.note.id}
                 name={props.note.name}
@@ -18,4 +20,11 @@ export default function NotePageMain(props) {
             </div>
         </section>
     )
+}
+
+NotePageMain.propTypes = {
+    history: PropTypes.object,
+    location: PropTypes.object,
+    match: PropTypes.object,
+    note: PropTypes.object,
 }

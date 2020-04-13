@@ -1,7 +1,9 @@
 import React from 'react';
 import Button from '../Button/Button';
+import PropTypes from 'prop-types';
 
 export default function NotePageNav(props) {
+    // console.log(props);
     return (
         <div className='NotePageNav'>
             <Button
@@ -19,4 +21,11 @@ export default function NotePageNav(props) {
             )}
         </div>
     )
+}
+
+NotePageNav.propTypes = {
+    history: PropTypes.object,
+    location: PropTypes.object,
+    match: PropTypes.object,
+    folder: PropTypes.object
 }
