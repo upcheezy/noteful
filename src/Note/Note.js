@@ -4,10 +4,11 @@ import NotefulContext from "../NotefulContext";
 import PropTypes from 'prop-types';
 
 function deleteNote(noteId, cb) {
-  fetch(`http://localhost:9090/notes/${noteId}`, {
+  fetch(`http://localhost:8000/notes/${noteId}`, {
     method: "DELETE",
     headers: {
-      "content-type": "application/json,"
+      "content-type": "application/json,",
+      Authorization: `Bearer f3332591-addb-4571-b105-5165425549e6`,
     }
   })
     .then(res => {

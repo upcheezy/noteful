@@ -19,8 +19,14 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    const notesUrl = "http://localhost:9090/notes";
-    fetch(notesUrl)
+    const notesUrl = "http://localhost:8000/notes";
+    fetch(notesUrl, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer f3332591-addb-4571-b105-5165425549e6`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
@@ -39,8 +45,14 @@ export default class App extends Component {
         });
       });
 
-    const foldersUrl = "http://localhost:9090/folders";
-    fetch(foldersUrl)
+    const foldersUrl = "http://localhost:8000/folders";
+    fetch(foldersUrl, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer f3332591-addb-4571-b105-5165425549e6`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
@@ -67,6 +79,7 @@ export default class App extends Component {
 
   renderNavRoutes() {
     const { notes, folders } = this.state;
+    // console.log(this.state);
     return (
       <>
         {/* why is the first operation in curly brackets? */}
@@ -128,6 +141,7 @@ export default class App extends Component {
 
   renderMainRoutes() {
     const { notes } = this.state;
+    console.log(notes);
     return (
       <>
         {["/", "/folder/:folderId"].map((path) => (
