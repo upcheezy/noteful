@@ -31,17 +31,20 @@ class AddNote extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     // const { fname } = this.state;
-    console.log(this);
+    console.log(this.state);
     const requestOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "content-type": "application/json",
+        Authorization: `Bearer f3332591-addb-4571-b105-5165425549e6`,
+       },
       body: JSON.stringify({
-        name: this.state.nname.value,
-        content: this.state.content.value,
-        folderId: this.state.folderId,
+        note_name: this.state.nname.value,
+        note_content: this.state.content.value,
+        folder_id: this.state.folderId,
       }),
     };
-    fetch("http://localhost:9090/notes/", requestOptions)
+    fetch("http://localhost:8000/notes/", requestOptions)
       .then((response) => {
         // check if response is ok
         console.log("About to check for errors");

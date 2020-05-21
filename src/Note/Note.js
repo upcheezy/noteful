@@ -40,6 +40,9 @@ export default function Note(props) {
               <h2 className="Note__title">
                 <Link to={`/note/${props.id}`}>{props.name}</Link>
               </h2>
+              <button className="Note__edit" type="button">
+                <Link to={`/edit-note/${props.id}`}>Edit Note</Link>
+              </button>
               <button className="Note__delete" 
                       type="button"
                       onClick={() => {
@@ -60,7 +63,7 @@ export default function Note(props) {
 }
 
 Note.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   name: PropTypes.string,
   modified: PropTypes.string,
   history: PropTypes.object

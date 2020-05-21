@@ -10,6 +10,7 @@ import NotePageMain from "../NotePageMain/NotePageMain";
 import NotefulContext from "../NotefulContext";
 import AddFolder from "../AddFolder/AddFolder";
 import AddNote from "../AddNote/AddNote";
+import EditNote from "../EditNote/EditNote";
 import HasError from "../hasError/HasError";
 
 export default class App extends Component {
@@ -34,6 +35,7 @@ export default class App extends Component {
             error: data.error,
           });
         } else {
+          // console.log(data);
           this.setState({
             notes: data,
           });
@@ -127,6 +129,15 @@ export default class App extends Component {
     });
   };
 
+  updateNote = (noteId) => {
+    const newNote = this.state.notes.map(note => 
+        (note.id === newNote.id) ? newNote : note
+      );
+    this.setState({
+      notes: newNote,
+    });
+  };
+
   addFolder = (folder) => {
     let newFolders = this.state.folders;
     newFolders.push(folder);
@@ -141,7 +152,7 @@ export default class App extends Component {
 
   renderMainRoutes() {
     const { notes } = this.state;
-    console.log(notes);
+    // console.log(notes);
     return (
       <>
         {["/", "/folder/:folderId"].map((path) => (
@@ -164,6 +175,19 @@ export default class App extends Component {
               <AddNote
                 folders={this.state.folders}
                 addNote={this.addNote}
+                {...routeProps}
+              />
+            );
+          }}
+        />
+
+        <Route
+          path="/edit-note/:note_id"
+          render={(routeProps) => {
+            return (
+              <EditNote
+                folders={this.state.folders}
+                updateNote={this.updateNote}
                 {...routeProps}
               />
             );

@@ -3,7 +3,7 @@ import Note from '../Note/Note';
 import PropTypes from 'prop-types';
 
 export default function NotePageMain(props) {
-    // console.log(props);
+    console.log(props);
     return (
         <section className='NotePageMain'>
             {/* {console.log(props)} */}
@@ -20,6 +20,10 @@ export default function NotePageMain(props) {
             </div>
         </section>
     )
+}
+
+NotePageMain.defaultProps = {
+    note: {}
 }
 
 NotePageMain.propTypes = {
