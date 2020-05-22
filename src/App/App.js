@@ -12,6 +12,7 @@ import AddFolder from "../AddFolder/AddFolder";
 import AddNote from "../AddNote/AddNote";
 import EditNote from "../EditNote/EditNote";
 import HasError from "../hasError/HasError";
+import config from '../config';
 
 export default class App extends Component {
   state = {
@@ -20,12 +21,12 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    const notesUrl = "http://localhost:8000/notes";
+    const notesUrl = `${config.API_ENDPOINT}`;
     fetch(notesUrl, {
       method: "GET",
       headers: {
         "content-type": "application/json",
-        Authorization: `Bearer f3332591-addb-4571-b105-5165425549e6`,
+        Authorization: `Bearer ${config.API_KEY}`,
       },
     })
       .then((res) => res.json())
@@ -47,12 +48,12 @@ export default class App extends Component {
         });
       });
 
-    const foldersUrl = "http://localhost:8000/folders";
+    const foldersUrl = `${config.API_FOLDER_ENDPOINT}`;
     fetch(foldersUrl, {
       method: "GET",
       headers: {
         "content-type": "application/json",
-        Authorization: `Bearer f3332591-addb-4571-b105-5165425549e6`,
+        Authorization: `Bearer ${config.API_KEY}`,
       },
     })
       .then((res) => res.json())

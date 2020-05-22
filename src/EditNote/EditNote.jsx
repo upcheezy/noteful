@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-// import ValidationError from "../ValidationError/ValidationError";
-// import PropTypes from "prop-types";
+import config from '../config'
 
 export default class EditNote extends Component {
   state = {
@@ -10,12 +9,12 @@ export default class EditNote extends Component {
   };
 
   componentDidMount() {
-    const notesUrl = "http://localhost:8000/notes";
+    const notesUrl = config.API_ENDPOINT;
     fetch(notesUrl, {
       method: "GET",
       headers: {
         "content-type": "application/json",
-        Authorization: `Bearer f3332591-addb-4571-b105-5165425549e6`,
+        Authorization: `Bearer ${config.API_KEY}`,
       },
     })
       .then((res) => res.json())
@@ -25,13 +24,9 @@ export default class EditNote extends Component {
             error: data.error,
           });
         } else {
-          // console.log(data)
-          // console.log(this.props.match.params.note_id);
           const newNote = data.find(
             (note) => note.id === parseInt(this.props.match.params.note_id)
           );
-          //   data.forEach((element) => console.log(element));
-          // console.log(newNote)
           this.setState({
             name: newNote.name,
             content: newNote.content,
@@ -75,13 +70,13 @@ export default class EditNote extends Component {
     };
     this.setState({ error: null });
     fetch(
-      `http://localhost:8000/notes/${this.props.match.params.note_id}`,
+      `${config.API_ENDPOINT}/${this.props.match.params.note_id}`,
       {
         method: "PATCH",
         body: JSON.stringify(note),
         headers: {
           "content-type": "application/json",
-          authorization: `Bearer f3332591-addb-4571-b105-5165425549e6`,
+          authorization: `Bearer ${config.API_KEY}`,
         },
       }
     )

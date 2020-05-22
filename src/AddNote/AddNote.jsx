@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ValidationError from "../ValidationError/ValidationError";
 import PropTypes from 'prop-types';
+import config from '../config'
 
 class AddNote extends Component {
   constructor(props) {
@@ -36,7 +37,7 @@ class AddNote extends Component {
       method: "POST",
       headers: { 
         "content-type": "application/json",
-        Authorization: `Bearer f3332591-addb-4571-b105-5165425549e6`,
+        Authorization: `Bearer ${config.API_KEY}`,
        },
       body: JSON.stringify({
         note_name: this.state.nname.value,
@@ -44,7 +45,7 @@ class AddNote extends Component {
         folder_id: this.state.folderId,
       }),
     };
-    fetch("http://localhost:8000/notes/", requestOptions)
+    fetch(`${config.API_ENDPOINT}/`, requestOptions)
       .then((response) => {
         // check if response is ok
         console.log("About to check for errors");

@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import NotefulContext from "../NotefulContext";
 import PropTypes from 'prop-types';
+import config from '../config';
 
 function deleteNote(noteId, cb) {
-  fetch(`http://localhost:8000/notes/${noteId}`, {
+  fetch(`${config.API_ENDPOINT}/${noteId}`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json,",
-      Authorization: `Bearer f3332591-addb-4571-b105-5165425549e6`,
+      Authorization: `Bearer ${config.API_KEY}`,
     }
   })
     .then(res => {
