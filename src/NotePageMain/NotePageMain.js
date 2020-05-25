@@ -3,10 +3,8 @@ import Note from '../Note/Note';
 import PropTypes from 'prop-types';
 
 export default function NotePageMain(props) {
-    console.log(props);
     return (
         <section className='NotePageMain'>
-            {/* {console.log(props)} */}
             <Note
                 id={props.note.id}
                 name={props.note.name}

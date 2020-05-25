@@ -6,11 +6,9 @@ import NotefulContext from "../NotefulContext";
 import PropTypes from 'prop-types';
 
 export default function NoteListNav(props) {
-  // console.log(props);
   return (
     <NotefulContext.Consumer>
       {value => {
-        // console.log(value);
         return (
           <>
             <div className="NoteListNav">

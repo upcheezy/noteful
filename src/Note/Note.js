@@ -21,8 +21,8 @@ function deleteNote(noteId, cb) {
       return res.json();
     })
     .then(data => {
-      // console.log({ data });
       cb(noteId)
+      this.props.history.push("/");
     })
     .catch(error => {
       console.log(error);
@@ -30,11 +30,9 @@ function deleteNote(noteId, cb) {
 }
 
 export default function Note(props) {
-  // console.log(props);
   return (
     <NotefulContext.Consumer>
       {(value) => {
-        // console.log(value);
         return (
           <>
             <div className="Note">
@@ -47,6 +45,8 @@ export default function Note(props) {
               <button className="Note__delete" 
                       type="button"
                       onClick={() => {
+                        console.log(value)
+                        console.log(props)
                           deleteNote(
                               props.id,
                               value.deleteNote,

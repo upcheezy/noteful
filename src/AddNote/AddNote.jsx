@@ -26,13 +26,10 @@ class AddNote extends Component {
     } else if (name.length < 3) {
       return "Name must be at least 3 characters long";
     }
-    // console.log(name)
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // const { fname } = this.state;
-    console.log(this.state);
     const requestOptions = {
       method: "POST",
       headers: { 
@@ -57,7 +54,6 @@ class AddNote extends Component {
       })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         this.props.addNote(response);
         this.props.history.push("/");
       })
@@ -80,7 +76,6 @@ class AddNote extends Component {
   updateFolderId(fid) {
     const currentId = this.props.folders.find(({ name }) => name === fid);
     this.setState({ folderId: currentId.id });
-    // console.log(currentId.id);
   }
 
   handleClickCancel = () => {
@@ -88,7 +83,6 @@ class AddNote extends Component {
   };
 
   render() {
-    //   console.log(this.props);
     return (
       <form className="AddNoteForm" onSubmit={this.handleSubmit}>
         <h2>Add Note</h2>

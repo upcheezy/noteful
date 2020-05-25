@@ -36,7 +36,6 @@ export default class App extends Component {
             error: data.error,
           });
         } else {
-          // console.log(data);
           this.setState({
             notes: data,
           });
@@ -82,14 +81,9 @@ export default class App extends Component {
 
   renderNavRoutes() {
     const { notes, folders } = this.state;
-    // console.log(this.state);
     return (
       <>
-        {/* why is the first operation in curly brackets? */}
-        {/* because we are starting with a map method (js) and not JSX */}
         {
-          // what is the first item (backslash) in this array for? When it's taken out the data doesn't display.
-          // dynamic path variable
           ["/", "/folder/:folderId"].map((path) => (
             <Route exact key={path} path={path} component={NoteListNav} />
           ))

@@ -3,7 +3,6 @@ import Button from '../Button/Button';
 import PropTypes from 'prop-types';
 
 export default function NotePageNav(props) {
-    // console.log(props);
     return (
         <div className='NotePageNav'>
             <Button

@@ -52,7 +52,6 @@ export default class EditNote extends Component {
   updateFolderId(fid) {
     const currentId = this.props.folders.find(({ name }) => name === fid);
     this.setState({ folderId: currentId.id });
-    // console.log(currentId.id);
   }
 
   handleClickCancel = () => {
@@ -82,9 +81,7 @@ export default class EditNote extends Component {
     )
       .then((res) => {
         if (!res.ok) {
-          // get the error message from the response,
           return res.json().then((error) => {
-            // then throw it
             throw error;
           });
         }
@@ -96,11 +93,9 @@ export default class EditNote extends Component {
         console.log(error);
         this.setState({ error });
       });
-    //   console.log(this.context);
   };
 
   render() {
-    // console.log(this.props);
     const { content, name } = this.state;
     return (
       <form className="EditNote__form" onSubmit={this.handleSubmit}>

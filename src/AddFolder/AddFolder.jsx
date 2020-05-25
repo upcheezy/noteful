@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ValidationError from "../ValidationError/ValidationError";
 import PropTypes from 'prop-types';
+import config from '../config'
 
 class AddFolder extends Component {
   constructor(props) {
@@ -13,14 +14,15 @@ class AddFolder extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // const { fname } = this.state;
-    // console.log(this);
     const requestOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: this.state.fname }),
+      headers: { 
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${config.API_KEY}`
+      },
+      body: JSON.stringify({ folder_name: this.state.fname }),
     };
-    fetch("http://localhost:9090/folders/", requestOptions)
+    fetch(`${config.API_FOLDER_ENDPOINT}/`, requestOptions)
       .then((response) => {
         // check if response is ok
         console.log("About to check for errors");
@@ -32,7 +34,6 @@ class AddFolder extends Component {
       })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         this.props.addFolder(response);
         this.props.history.push("/");
       })
