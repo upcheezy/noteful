@@ -4,7 +4,7 @@ import NotefulContext from "../NotefulContext";
 import PropTypes from 'prop-types';
 import config from '../config';
 
-function deleteNote(noteId, cb) {
+function delete_Note(noteId, cb) {
   fetch(`${config.API_ENDPOINT}/${noteId}`, {
     method: "DELETE",
     headers: {
@@ -18,7 +18,7 @@ function deleteNote(noteId, cb) {
           throw error;
         });
       }
-      return res.json();
+      // return res.json();
     })
     .then(data => {
       cb(noteId)
@@ -45,9 +45,9 @@ export default function Note(props) {
               <button className="Note__delete" 
                       type="button"
                       onClick={() => {
-                        console.log(value)
-                        console.log(props)
-                          deleteNote(
+                        // console.log(value)
+                        // console.log(props)
+                          delete_Note(
                               props.id,
                               value.deleteNote,
                           )
